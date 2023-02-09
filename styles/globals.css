@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Bebas";
+  src: url("/assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+.primary-font {
+  font-family: Bebas;
+}
+
+body {
+  @apply bg-black primary-font text-white;
+}
