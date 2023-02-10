@@ -7,7 +7,7 @@ export default function Home() {
       <Head>
         <title>Netflix</title>
       </Head>
-      {/* <Main /> */}
+      <Main />
     </>
   );
 }
