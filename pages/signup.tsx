@@ -10,7 +10,7 @@ const Signup = () => {
   const { user, signUp } = UserAuth();
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const result = await signUp(email, password);
     if (result == "Success") {
