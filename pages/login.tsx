@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { UserAuth } from "../context/AuthContext";
 
@@ -7,17 +8,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { user, logIn } = UserAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       await logIn(email, password);
-      navigate("/");
+      router.push("/");
     } catch (error) {
-      console.log(error);
-      setError(error.message);
+      let errorMessage = "Failed to do something.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.log(errorMessage);
+      setError(errorMessage);
     }
   };
 
@@ -61,7 +66,7 @@ const Login = () => {
               </div>
               <p className="py-8">
                 <span className="text-gray-600">New to Netflix?</span>{" "}
-                <Link to="/signup">Sign Up</Link>
+                <Link href="/signup">Sign Up</Link>
               </p>
             </form>
           </div>

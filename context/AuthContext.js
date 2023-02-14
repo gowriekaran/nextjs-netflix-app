@@ -13,11 +13,40 @@ const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
-  function signUp(email, password) {
-    createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, "users", email), {
-      savedShows: [],
-    });
+  async function signUp(email, password) {
+    let result = "Success";
+    await createUserWithEmailAndPassword(auth, email, password)
+      .catch((error) => {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            result = `Email address ${email} already in use.`;
+
+            break;
+          case "auth/invalid-email":
+            result = `Email address ${email} is invalid.`;
+
+            break;
+          case "auth/operation-not-allowed":
+            result = `Error during sign up.`;
+
+            break;
+          case "auth/weak-password":
+            result =
+              "Password is not strong enough. Add additional characters including special characters and numbers.";
+            break;
+          default:
+            result = error.message;
+            break;
+        }
+      })
+      .finally(() => {
+        if (result == "Success") {
+          setDoc(doc(db, "users", email), {
+            savedShows: [],
+          });
+        }
+      });
+    return result;
   }
 
   function logIn(email, password) {
