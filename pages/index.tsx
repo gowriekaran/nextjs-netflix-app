@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Netflix</title>
+        <title>Notflix</title>
       </Head>
       <Main />
       <Row rowID="1" title="UpComing" fetchURL={requests.requestUpcoming} />

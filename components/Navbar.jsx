@@ -23,7 +23,7 @@ const Navbar = () => {
           className="text-red-600 text-4xl font-bod cursor-pointer upp
             "
         >
-          Netflix
+          Notflix
         </h1>
       </Link>
       {user?.email ? (
