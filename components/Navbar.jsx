@@ -7,8 +7,6 @@ const Navbar = () => {
   const { user, logOut } = UserAuth();
   const router = useRouter();
 
-  console.log(user);
-
   const handleLogout = async () => {
     try {
       await logOut();
@@ -35,7 +33,7 @@ const Navbar = () => {
           </Link>
           <button
             onClick={handleLogout}
-            className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white"
+            className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white hover:bg-white hover:text-red-600 ease-in duration-150"
           >
             Logout
           </button>
@@ -46,7 +44,7 @@ const Navbar = () => {
             <button className="text-white pr-4">Log In</button>
           </Link>
           <Link href="/signup">
-            <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">
+            <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white hover:bg-white hover:text-red-600 ease-in duration-150">
               Sign Up
             </button>
           </Link>
